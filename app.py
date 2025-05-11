@@ -19,8 +19,7 @@ if uploaded_file is not None:
     try:
         # Debug: show tesseract version
         output = subprocess.getoutput("tesseract --version")
-        st.text(f"Tesseract version:
-{output}")
+        st.text(f"Tesseract version:\n{output}")
 
         images = convert_from_bytes(uploaded_file.read(), dpi=300)
         full_text = ""
