@@ -2,6 +2,7 @@ import streamlit as st
 import pytesseract
 from pdf2image import convert_from_bytes
 import re
+import subprocess
 
 st.title("📄 PDF OCR Extractor (Render Deployment)")
 
@@ -16,6 +17,11 @@ def clean_text(text):
 if uploaded_file is not None:
     st.info("⏳ Processing PDF...")
     try:
+        # Debug: show tesseract version
+        output = subprocess.getoutput("tesseract --version")
+        st.text(f"Tesseract version:
+{output}")
+
         images = convert_from_bytes(uploaded_file.read(), dpi=300)
         full_text = ""
         for page in images:
